@@ -1,0 +1,32 @@
+﻿@using CursoMVC5.Models
+@model List<Sucursal_CLS>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("Agregar","Agregar","Sucursal",null , new {@class= "btn btn-primary"})
+
+<table class="table mt-3">
+    <thead class="table-dark">
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].Iidsucursal)</td>
+            <td>@Html.LabelFor(p => Model[0].Nombre)</td>
+            <td>@Html.LabelFor(p => Model[0].Telefono)</td>
+            <td>@Html.LabelFor(p => Model[0].Email)</td>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Iidsucursal</td>
+                <td>@item.Nombre</td>
+                <td>@item.Telefono</td>
+                <td>@item.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

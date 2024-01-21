@@ -1,0 +1,74 @@
+﻿@using CursoMVC5.Models
+@model Cliente_CLS
+
+@{
+    ViewBag.Title = "Agregar";
+    List<SelectListItem> listaDeSexo = (List<SelectListItem>)ViewBag.lista;
+}
+
+<h2>Agregar</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(p => p.Nombre)
+                @Html.TextBoxFor(p => p.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.ApePaterno)
+                @Html.TextBoxFor(p => p.ApePaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("ApePaterno", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.ApeMaterno)
+                @Html.TextBoxFor(p => p.ApeMaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("ApeMaterno", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.Email)
+                @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
+                @Html.ValidationMessage("Email", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.Direccion)
+                @Html.TextBoxFor(p => p.Direccion, new { @class = "form-control" })
+                @Html.ValidationMessage("Direccion", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.Iidsexo)
+                @Html.DropDownList("Iidsexo", listaDeSexo,null , new {@class="form-control"})
+                @Html.ValidationMessage("Iidsexo", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.TelefonoFijo)
+                @Html.TextBoxFor(p => p.TelefonoFijo, new { @class = "form-control" })
+                @Html.ValidationMessage("TelefonoFijo", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(p => p.TelefonoCelular)
+                @Html.TextBoxFor(p => p.TelefonoCelular, new { @class = "form-control" })
+                @Html.ValidationMessage("TelefonoCelular", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                <input type="submit" name="Guardar" value="Agregar" class="btn btn-primary" />
+            </div>
+
+
+
+        }
+
+    </div>
+
+</div>
+

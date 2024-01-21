@@ -1,0 +1,33 @@
+﻿@using CursoMVC5.Models
+@model List<Marca_CLS>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("Agregar","Agregar","Marca",null,new { @class = "btn btn-primary mb-3" } )
+
+<table class="table table-bordered ">
+    <thead class="table-danger table-hover">
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].iidMarca)</td>
+            <td>@Html.LabelFor(p => Model[0].nombre)</td>
+            <td>@Html.LabelFor(p => Model[0].descripcion)</td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="10%">@item.iidMarca</td>
+                <td width="15%">@item.nombre</td>
+                <td>@item.descripcion</td>
+                
+            </tr>
+
+        }
+    </tbody>
+
+</table>

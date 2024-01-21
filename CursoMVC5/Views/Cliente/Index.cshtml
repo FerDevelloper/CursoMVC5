@@ -1,0 +1,75 @@
+﻿@using CursoMVC5.Models
+@model List<Cliente_CLS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <h2>Index</h2>
+            @Html.ActionLink("Agregar", "Agregar", "Cliente", null, new { @class = "btn btn-primary" })
+        </div>
+
+    </div>
+
+    
+
+    <div class="row mt-3">
+
+        <table class="table table-striped">
+
+            <thead class="table-dark">
+                <tr>
+                    <td>@Html.LabelFor(p => Model[0].Iidcliente)</td>
+
+                    <td>@Html.LabelFor(p => Model[0].Nombre)</td>
+
+                    <td>@Html.LabelFor(p => Model[0].ApePaterno)</td>
+
+                    <td>@Html.LabelFor(p => Model[0].ApeMaterno)</td>
+
+                    <td>@Html.LabelFor(p => Model[0].TelefonoFijo)</td>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var cliente in Model)
+                {
+
+                    <tr>
+                        <td>@cliente.Iidcliente</td>
+
+                        <td>@cliente.Nombre</td>
+
+                        <td>@cliente.ApePaterno</td>
+
+                        <td>@cliente.ApeMaterno</td>
+
+                        <td>@cliente.TelefonoFijo</td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+
+
+        </table>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
