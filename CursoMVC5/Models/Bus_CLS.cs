@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 
 namespace CursoMVC5.Models
 {
@@ -19,6 +20,22 @@ namespace CursoMVC5.Models
 		[Display(Name = "Id de Tipo bus")]
 		[Required]
 		public int IidTipoBus { get; set; }
+
+		[Display(Name = "Id de Tipo bus")]		
+		[StringLength(100,ErrorMessage ="La Longitud maxima es de 100")]
+		public string placa { get; set; }
+
+		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+		{
+			if (IidTipoBus % 2 == 0) // Si IidTipoBus es par
+			{
+				if (string.IsNullOrEmpty(placa))
+				{
+					yield return new ValidationResult("El campo Placa es obligatorio cuando Id de Tipo bus es par.", new[] { nameof(placa) });
+				}
+			}
+		}
+
 
 		[Display(Name = "Fecha de Compra")]
 		[Required]

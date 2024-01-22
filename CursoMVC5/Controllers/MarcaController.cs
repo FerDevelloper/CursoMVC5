@@ -59,5 +59,11 @@ namespace CursoMVC5.Controllers
             }
 			return RedirectToAction("Index");
 		}
+
+
+        public ActionResult Editar(int id)
+        {
+            return View();
+        }
 	}
 }

@@ -1,0 +1,45 @@
+﻿@using CursoMVC5.Models
+@model List<Bus_CLS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container"
+    <div class="row mt-3">
+        <div class="col">
+            <table class="table table-bordered table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <td>@Html.LabelFor(p => p[0].IidBus)</td>
+                        <td>@Html.LabelFor(p => p[0].placa)</td>
+                        <td>@Html.LabelFor(p => p[0].NombreModelo)</td>
+                        <td>@Html.LabelFor(p => p[0].NombreSucursal)</td>
+                        <td>@Html.LabelFor(p => p[0].NombreTipoBus)</td>
+                    </tr>
+                </thead>
+                <tbody class="text-center table-striped-columns ">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IidBus</td>
+                            <td>@item.placa</td>
+                            <td>@item.NombreModelo</td>
+                            <td>@item.NombreSucursal</td>
+                            <td>@item.NombreTipoBus</td>
+                        </tr>
+                    }
+
+                </tbody>
+
+
+            </table>
+
+
+
+        </div>
+    </div>
+</div>
+

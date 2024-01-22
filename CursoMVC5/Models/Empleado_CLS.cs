@@ -32,7 +32,13 @@ namespace CursoMVC5.Models
 		[DisplayFormat(DataFormatString = "0:yyyy-MM-dd",ApplyFormatInEditMode =true)]
 		public DateTime FechaContrato { get; set; }
 
-		[Display(Name = "Tipo Usuario")]
+
+		[Display(Name = "Sueldo")]
+		[Required]
+		[Range(0,10000,ErrorMessage ="Fuera de Rango")]
+        public decimal Sueldo { get; set; }
+
+        [Display(Name = "Tipo Usuario")]
 		[Required]
 
 		public int IidTipoUsuario {  get; set; }

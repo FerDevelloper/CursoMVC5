@@ -1,0 +1,80 @@
+﻿@using CursoMVC5.Models
+@model Empleado_CLS
+@{
+    ViewBag.Title = "Agregar";
+    List<SelectListItem> listaSexo = ViewBag.ListaSexo;
+    List<SelectListItem> ListaTipoContrato = ViewBag.ListaTipoContrato;
+    List<SelectListItem> ListaTipoUsuario = ViewBag.ListaTipoUsuario;
+   @* List<SelectListItem> listaSexo2 = (List<SelectListItem>)ViewBag.ListaSexo;*@
+
+
+}
+
+<h2>Agregar Empleado</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Agregar", "Empleado", FormMethod.Post))
+    {
+        <div class="row mt-3">
+            <div class="col">
+                @Html.LabelFor(p => p.Nombre)
+                @Html.TextBoxFor(p => p.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessage("nombre", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(p => p.ApPaterno)
+                @Html.TextBoxFor(p => p.ApPaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("ApPaterno", new { @class = "text-danger" })
+            </div>
+
+            <div class="col">
+                @Html.LabelFor(p => p.ApMaterno)
+                @Html.TextBoxFor(p => p.ApMaterno, new { @class = "form-control" })
+                @Html.ValidationMessage("ApMaterno", new { @class = "text-danger" })
+            </div>
+
+            <div class="col">
+                @Html.LabelFor(p => p.FechaContrato)
+                @Html.EditorFor(p => p.FechaContrato, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("FechaContrato", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                @Html.LabelFor(p => p.Sueldo)
+                @Html.TextBoxFor(p => p.Sueldo, new { @class = "form-control" })
+                @Html.ValidationMessage("Sueldo", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(p => p.IidTipoUsuario)
+                @Html.DropDownList("IidTipoUsuario", ListaTipoUsuario, null, new { @class = "form-control" })
+                @Html.ValidationMessage("IidTipoUsuario", new { @class = "text-danger" })
+            </div>
+
+            <div class="col">
+                @Html.LabelFor(p => p.IidTipoContrato)
+                @Html.DropDownList("IidTipoContrato", ListaTipoContrato, null, new { @class = "form-control" })
+                @Html.ValidationMessage("IidTipoContrato", new { @class = "text-danger" })
+            </div>
+
+            <div class="col">
+                @Html.LabelFor(p => p.IidSexo)
+                @Html.DropDownList("IidSexo", listaSexo, null, new { @class = "form-control" })
+                @Html.ValidationMessage("IidSexo", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="row text-center align-items-center mt-3">
+            <div class="col-2">
+                <button type="submit" class="btn btn-success"> Agregar </button>
+            </div>
+
+        </div>
+    }
+</div>
+
+
+

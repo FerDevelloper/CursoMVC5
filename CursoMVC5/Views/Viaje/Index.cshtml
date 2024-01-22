@@ -1,0 +1,38 @@
+﻿@using CursoMVC5.Models
+@model List<Viaje_CLS>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Viaje Index</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table table-borderless table-hover table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <td>@Html.LabelFor(p => p[0].iidviaje)</td>
+                        <td>@Html.LabelFor(p => p[0].nombreLugarOrigen)</td>
+                        <td>@Html.LabelFor(p => p[0].nombreLugarDestino)</td>
+                        <td>@Html.LabelFor(p => p[0].nombreBus)</td>
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.iidviaje</td>
+                            <td>@item.nombreLugarOrigen</td>
+                            <td>@item.nombreLugarDestino</td>
+                            <td>@item.nombreBus</td>
+                        </tr>
+
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
