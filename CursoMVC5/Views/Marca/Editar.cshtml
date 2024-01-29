@@ -9,8 +9,15 @@
 
 <div class="row">
     <div class="col-md-6">
-        @using (Html.BeginForm("Editar", "Marca", FormMethod.Post))
+        @using (Html.BeginForm("Editar", "Marca", FormMethod.Post, new {@id="formEditar"}))
         {
+
+            <div>
+                @Html.LabelFor(p => p.iidMarca, new { @class = "w-100" ,@readOnly=true })
+                @Html.TextBoxFor(P => P.iidMarca, new { @class = "from-control w-100" })
+                @Html.ValidationMessage("iidMarca", new { @class = "text-danger" })
+            </div>
+
             <div>
                 @Html.LabelFor(p => p.nombre, new { @class = "w-100" })
                 @Html.TextBoxFor(P => P.nombre, new { @class = "from-control w-100" })
@@ -25,9 +32,25 @@
             <br />
             <div>
                 <input type="submit" class="btn btn-primary" value="Guardar" />
+
+                @Html.ActionLink("Regresar", "Index", "Marca", null, new { @class = "btn btn-primary mb-3" })
             </div>
 
 
         }
     </div>
 </div>
+
+<script>
+    var frmEditar = document.getElementById("formEditar");
+    frmEditar.onsubmit = function (e) {
+        e.preventDefault();
+        if (confirm("Deseas guardar los cambios?") == 1) {
+            frmEditar.submit();
+        }
+
+    }
+
+</script>
+
+
