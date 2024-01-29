@@ -33,7 +33,10 @@ namespace CursoMVC5.Models
 		[EmailAddress(ErrorMessage ="ingrese un email valido")]
 		public string Email { get; set; }
 
+
+
 		[Display(Name = "Direccion")]
+		[DataType(DataType.MultilineText)]
 		[Required]
 		[StringLength(200, ErrorMessage = "Maximo 200")]
 		public string Direccion { get; set; }

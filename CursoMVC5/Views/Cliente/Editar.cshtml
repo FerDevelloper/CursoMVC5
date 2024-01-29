@@ -1,17 +1,29 @@
 ﻿@using CursoMVC5.Models
 @model Cliente_CLS
 
+
 @{
-    ViewBag.Title = "Agregar";
-    List<SelectListItem> listaDeSexo = (List<SelectListItem>)ViewBag.lista;
+    ViewBag.Title = "Editar";
+
+    List<SelectListItem> listaDeSexo = (List<SelectListItem>) ViewBag.lista;
+    
+
 }
 
-<h2>Agregar</h2>
+<h2>Editar</h2>
 
 <div class="row">
     <div class="col-md-6">
-        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
+        @using (Html.BeginForm("Editar", "Cliente", FormMethod.Post))
         {
+
+            <div>
+                @Html.LabelFor(p => p.Iidcliente)
+                @Html.TextBoxFor(p => p.Iidcliente, new { @class = "form-control", @readonly=true })
+                @Html.ValidationMessage("Iidcliente", new { @class = "text-danger" })
+            </div>
+
+
             <div>
                 @Html.LabelFor(p => p.Nombre)
                 @Html.TextBoxFor(p => p.Nombre, new { @class = "form-control" })
@@ -45,7 +57,7 @@
 
             <div>
                 @Html.LabelFor(p => p.Iidsexo)
-                @Html.DropDownList("Iidsexo", listaDeSexo,null , new {@class="form-control"})
+                @Html.DropDownList("Iidsexo", listaDeSexo, null, new { @class = "form-control" })
                 @Html.ValidationMessage("Iidsexo", new { @class = "text-danger" })
             </div>
 

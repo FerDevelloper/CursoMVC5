@@ -90,6 +90,35 @@ namespace CursoMVC5.Controllers
 			return RedirectToAction("Index");
 		}
 
+
+        public ActionResult Editar(int id)
+        {
+            Cliente_CLS cliente_CLS = new Cliente_CLS();
+
+            using(var bd = new BDPasajeEntities())
+            {
+
+				LlenarListaSexo();
+				ViewBag.lista = lista;
+
+				Cliente ocliente = bd.Cliente.Where(p => p.IIDCLIENTE.Equals(id)).First();
+
+                cliente_CLS.Iidcliente = ocliente.IIDCLIENTE;
+				cliente_CLS.Nombre = ocliente.NOMBRE;
+				cliente_CLS.ApePaterno = ocliente.APPATERNO;
+				cliente_CLS.ApeMaterno = ocliente.APMATERNO;
+				cliente_CLS.Direccion = ocliente.DIRECCION;
+				cliente_CLS.Email = ocliente.EMAIL;
+
+				cliente_CLS.Iidsexo = (int)ocliente.IIDSEXO;
+				cliente_CLS.TelefonoCelular = ocliente.TELEFONOCELULAR;
+				cliente_CLS.TelefonoFijo = ocliente.TELEFONOFIJO;
+			}
+
+
+            return View(cliente_CLS);
+        }
+
 		
 	}
 }

@@ -14,7 +14,8 @@
             <td>@Html.LabelFor(p => Model[0].Iidsucursal)</td>
             <td>@Html.LabelFor(p => Model[0].Nombre)</td>
             <td>@Html.LabelFor(p => Model[0].Telefono)</td>
-            <td>@Html.LabelFor(p => Model[0].Email)</td>            
+            <td>@Html.LabelFor(p => Model[0].Email)</td>
+            <td>Operaciones</td>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,11 @@
                 <td>@item.Nombre</td>
                 <td>@item.Telefono</td>
                 <td>@item.Email</td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = @item.Iidsucursal }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Eliminar", "Sucursal", new { id = @item.Iidsucursal }, new { @class = "btn btn-warning" })
+
+                </td>
             </tr>
         }
     </tbody>

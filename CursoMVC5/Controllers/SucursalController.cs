@@ -65,5 +65,26 @@ namespace CursoMVC5.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult Editar(int id)
+        {
+            Sucursal_CLS sucursalCLS = new Sucursal_CLS();
+
+            using(var bd = new BDPasajeEntities())
+            {
+                Sucursal osucursal = bd.Sucursal.Where( p=> p.IIDSUCURSAL.Equals(id)).First();
+				sucursalCLS.Iidsucursal = osucursal.IIDSUCURSAL;
+				sucursalCLS.Nombre = osucursal.NOMBRE;
+				sucursalCLS.Direccion = osucursal.DIRECCION;
+				sucursalCLS.Telefono = osucursal.TELEFONO;
+				sucursalCLS.Email = osucursal.EMAIL;
+				sucursalCLS.FechaApertura = (DateTime)osucursal.FECHAAPERTURA;
+
+			}
+
+            return View(sucursalCLS);
+        }
+
+
 	}
 }

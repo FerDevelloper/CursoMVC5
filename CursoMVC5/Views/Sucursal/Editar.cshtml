@@ -1,0 +1,60 @@
+﻿
+@using CursoMVC5.Models
+@model Sucursal_CLS
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Sucursal</h2>
+
+@using (Html.BeginForm("Editar", "Sucursal", FormMethod.Post))
+{
+    <div class="container mt-3">
+        <div class="row">
+            @Html.LabelFor(p => p.Iidsucursal)
+            @Html.TextBoxFor(p => p.Iidsucursal, new { @class = "form-control, readOnly=true" })
+            @Html.ValidationMessage("Iidsucursal", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(p => p.Direccion)
+            @Html.TextBoxFor(p => p.Direccion, new { @class = "form-control" })
+            @Html.ValidationMessage("Direccion", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(p => p.Telefono)
+            @Html.TextBoxFor(p => p.Telefono, new { @class = "form-control" })
+            @Html.ValidationMessage("Telefono", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(p => p.Email)
+            @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
+            @Html.ValidationMessage("Email", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(p => p.FechaApertura)
+            @Html.EditorFor(p => p.FechaApertura, new { @class = "form-control" })
+            @Html.ValidationMessage("Fecha de Apertura", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="row mt-5">
+
+            <input type="submit" name="AgregarSucursal" value="Agregar Sucursal" class="btn btn-outline-primary" />
+
+        </div>
+    </div>
+}
+
+
+
+
+

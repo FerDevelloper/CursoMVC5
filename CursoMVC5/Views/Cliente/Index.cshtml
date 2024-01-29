@@ -52,6 +52,13 @@
                         <td>@cliente.ApeMaterno</td>
 
                         <td>@cliente.TelefonoFijo</td>
+                        <td>
+
+                            @Html.ActionLink("🖋️", "Editar", "Cliente", new { id = @cliente.Iidcliente }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("🚮", "Eliminar", "Cliente", new { id = @cliente.Iidcliente }, new { @class = "btn btn-danger" })
+
+                            
+                        </td>
 
                     </tr>
 

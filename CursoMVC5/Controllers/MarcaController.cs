@@ -63,7 +63,16 @@ namespace CursoMVC5.Controllers
 
         public ActionResult Editar(int id)
         {
-            return View();
+            Marca_CLS oMarca_CLS = new Marca_CLS();
+            using(var bd = new BDPasajeEntities())
+            {
+                Marca oMarca = bd.Marca.Where(p =>p.IIDMARCA.Equals(id)).First();
+				oMarca_CLS.iidMarca = oMarca.IIDMARCA;
+				oMarca_CLS.nombre = oMarca.NOMBRE;
+				oMarca_CLS.descripcion = oMarca.DESCRIPCION;
+			}
+
+            return View(oMarca_CLS);
         }
 	}
 }
