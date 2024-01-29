@@ -36,5 +36,131 @@ namespace CursoMVC5.Controllers
             }
             return View(listaBus);
         }
-    }
+
+        public ActionResult Agregar()
+        {
+			Llenar_Combos();
+            return View();
+        }
+
+		[HttpPost]
+
+		public ActionResult Agregar(Bus_CLS Bus_cls)
+		{
+
+			if(!ModelState.IsValid)
+			{
+				Llenar_Combos();
+				return View(Bus_cls);
+			}
+
+			using(var bd= new BDPasajeEntities())
+			{
+				Bus oBus= new Bus();
+				oBus.BHABILITADO = 1;
+				oBus.IIDSUCURSAL = Bus_cls.IidSucursal;
+				oBus.IIDTIPOBUS = Bus_cls.IidTipoBus;
+				oBus.PLACA = Bus_cls.placa;
+				oBus.FECHACOMPRA = Bus_cls.FechaCompra;
+				oBus.IIDMODELO = Bus_cls.IidModelo;
+				oBus.NUMEROFILAS = Bus_cls.NumeroFilas;
+				oBus.NUMEROCOLUMNAS = Bus_cls.NumeroColumnas;
+				oBus.DESCRIPCION = Bus_cls.Descripcion;
+				oBus.OBSERVACION = Bus_cls.Observacion;
+				oBus.IIDMARCA = Bus_cls.IidMarca;
+
+				bd.Bus.Add(oBus);
+				bd.SaveChanges();
+			}
+			return RedirectToAction("Index",Bus_cls);
+		}
+
+
+		public void Llenar_Combos()
+		{
+			listarMarca();
+			listarModelo();
+			listarSucursal();
+			listarTipoBus();
+		}
+
+
+		public void listarTipoBus()
+		{
+			List<SelectListItem> lista;
+			using (var bd = new BDPasajeEntities())
+			{
+				lista = (from TipoContrato in bd.TipoBus
+						 where TipoContrato.BHABILITADO == 1
+						 select new SelectListItem
+						 {
+							 Text = TipoContrato.NOMBRE,
+							 Value = TipoContrato.IIDTIPOBUS.ToString(),
+
+						 }).ToList();
+
+				lista.Insert(0, new SelectListItem { Text = "--Selecione--", Value = "" });
+				ViewBag.listarTipoBus = lista;
+			}
+		}
+
+		public void listarMarca()
+		{
+			List<SelectListItem> lista;
+			using (var bd = new BDPasajeEntities())
+			{
+				lista = (from TipoContrato in bd.Marca
+						 where TipoContrato.BHABILITADO == 1
+						 select new SelectListItem
+						 {
+							 Text = TipoContrato.NOMBRE,
+							 Value = TipoContrato.IIDMARCA.ToString(),
+
+						 }).ToList();
+
+				lista.Insert(0, new SelectListItem { Text = "--Selecione--", Value = "" });
+				ViewBag.listarMarca = lista;
+			}
+		}
+
+		public void listarModelo()
+		{
+			List<SelectListItem> lista;
+			using (var bd = new BDPasajeEntities())
+			{
+				lista = (from TipoContrato in bd.Modelo
+						 where TipoContrato.BHABILITADO == 1
+						 select new SelectListItem
+						 {
+							 Text = TipoContrato.NOMBRE,
+							 Value = TipoContrato.IIDMODELO.ToString(),
+
+						 }).ToList();
+
+				lista.Insert(0, new SelectListItem { Text = "--Selecione--", Value = "" });
+				ViewBag.listarModelo = lista;
+			}
+		}
+
+		public void listarSucursal()
+		{
+			List<SelectListItem> lista;
+			using (var bd = new BDPasajeEntities())
+			{
+				lista = (from TipoContrato in bd.Sucursal
+						 where TipoContrato.BHABILITADO == 1
+						 select new SelectListItem
+						 {
+							 Text = TipoContrato.NOMBRE,
+							 Value = TipoContrato.IIDSUCURSAL.ToString(),
+
+						 }).ToList();
+
+				lista.Insert(0, new SelectListItem { Text = "--Selecione--", Value = "" });
+				ViewBag.listarSucursal = lista;
+			}
+		}
+
+
+	}
 }

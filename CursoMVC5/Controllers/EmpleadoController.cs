@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Web;
 using System.Web.Mvc;
 
@@ -133,5 +134,32 @@ namespace CursoMVC5.Controllers
 
 			return RedirectToAction("Index");
 		}
+
+        public ActionResult Editar(int id)
+        {
+			ListarCombos();
+
+			Empleado_CLS empleado_CLS = new Empleado_CLS();
+            using(var bd = new BDPasajeEntities())
+            {
+                Empleado oempleado = bd.Empleado.Where(p => p.IIDEMPLEADO.Equals(id)).First();
+
+                empleado_CLS.IidEmpleado = oempleado.IIDEMPLEADO;
+				empleado_CLS.Nombre = oempleado.NOMBRE;
+				empleado_CLS.ApPaterno = oempleado.APPATERNO;
+				empleado_CLS.ApMaterno = oempleado.APMATERNO;
+				empleado_CLS.FechaContrato = (DateTime)oempleado.FECHACONTRATO;
+				empleado_CLS.Sueldo = (decimal)oempleado.SUELDO;
+				empleado_CLS.IidTipoUsuario = (int)oempleado.IIDTIPOUSUARIO;
+				empleado_CLS.IidTipoContrato = (int)oempleado.IIDTIPOCONTRATO;
+				empleado_CLS.IidSexo = (int)oempleado.IIDSEXO;
+			}
+
+
+
+            return View(empleado_CLS);
+        }
+
+
 	}
 }
