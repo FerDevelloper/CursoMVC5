@@ -180,6 +180,7 @@
       <DependentUpon>BDPasajes.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Empleado_CLS.cs" />
+    <Compile Include="Models\FER.cs" />
     <Compile Include="Models\Lugar.cs">
       <DependentUpon>BDPasajes.tt</DependentUpon>
     </Compile>
