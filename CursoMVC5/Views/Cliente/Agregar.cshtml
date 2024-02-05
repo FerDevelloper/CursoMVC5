@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
+        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post, new {@id="frmCliente"}))
         {
             <div>
                 @Html.LabelFor(p => p.Nombre)
@@ -45,7 +45,7 @@
 
             <div>
                 @Html.LabelFor(p => p.Iidsexo)
-                @Html.DropDownList("Iidsexo", listaDeSexo,null , new {@class="form-control"})
+                @Html.DropDownList("Iidsexo", listaDeSexo, null, new { @class = "form-control" })
                 @Html.ValidationMessage("Iidsexo", new { @class = "text-danger" })
             </div>
 
@@ -60,16 +60,50 @@
                 @Html.TextBoxFor(p => p.TelefonoCelular, new { @class = "form-control" })
                 @Html.ValidationMessage("TelefonoCelular", new { @class = "text-danger" })
             </div>
-
             <div>
-                <input type="submit" name="Guardar" value="Agregar" class="btn btn-primary" />
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    guardar
+                </button>
+                @Html.ActionLink("Regresar", "Index", "Cliente", null, new {@class="btn btn-danger"})
+
             </div>
-
-
-
+            
         }
+
+
 
     </div>
 
 </div>
 
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Desea guardar loscambios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div style="padding:1em">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Agregar()" class="btn btn-primary">Acceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    
+
+    function Agregar() {
+        var frmCliente = document.getElementById("frmCliente");
+        frmCliente.submit();
+
+    }
+
+</script>

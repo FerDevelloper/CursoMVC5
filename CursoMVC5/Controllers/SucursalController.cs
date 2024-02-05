@@ -52,10 +52,10 @@ namespace CursoMVC5.Controllers
 					NOMBRE = oSucursalCLS.Nombre,
 					DIRECCION = oSucursalCLS.Direccion,
 					TELEFONO = oSucursalCLS.Telefono,
-					EMAIL = oSucursalCLS.Email
-				};
-
-				oSucursal.FECHAAPERTURA = oSucursal.FECHAAPERTURA;
+					EMAIL = oSucursalCLS.Email,
+					FECHAAPERTURA = oSucursalCLS.FechaApertura
+			    };
+				
                 oSucursal.BHABILITADO = 1;
                 bd.Sucursal.Add(oSucursal);
                 bd.SaveChanges();
@@ -78,11 +78,37 @@ namespace CursoMVC5.Controllers
 				sucursalCLS.Direccion = osucursal.DIRECCION;
 				sucursalCLS.Telefono = osucursal.TELEFONO;
 				sucursalCLS.Email = osucursal.EMAIL;
-				sucursalCLS.FechaApertura = (DateTime)osucursal.FECHAAPERTURA;
+                sucursalCLS.FechaApertura = (DateTime)osucursal.FECHAAPERTURA;
+				
 
 			}
 
             return View(sucursalCLS);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Sucursal_CLS oSucursal)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(oSucursal);
+            }
+            int id = oSucursal.Iidsucursal;
+
+            using(var bd=new BDPasajeEntities())
+            {
+                Sucursal sucursal = bd.Sucursal.Where(p => p.IIDSUCURSAL.Equals(id)).First();
+
+                sucursal.NOMBRE = oSucursal.Nombre;
+				sucursal.DIRECCION = oSucursal.Direccion;
+				sucursal.TELEFONO = oSucursal.Telefono;
+				sucursal.EMAIL = oSucursal.Email;
+				sucursal.FECHAAPERTURA = oSucursal.FechaApertura;
+                
+                bd.SaveChanges();
+			}
+
+            return RedirectToAction("Index");
         }
 
 

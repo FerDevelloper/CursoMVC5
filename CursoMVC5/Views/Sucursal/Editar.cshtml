@@ -8,13 +8,20 @@
 
 <h2>Editar Sucursal</h2>
 
-@using (Html.BeginForm("Editar", "Sucursal", FormMethod.Post))
+@using (Html.BeginForm("Editar", "Sucursal", FormMethod.Post, new {@id="formSucursal"} ))
 {
     <div class="container mt-3">
         <div class="row">
             @Html.LabelFor(p => p.Iidsucursal)
             @Html.TextBoxFor(p => p.Iidsucursal, new { @class = "form-control, readOnly=true" })
             @Html.ValidationMessage("Iidsucursal", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(p => p.Nombre)
+            @Html.TextBoxFor(p => p.Nombre, new { @class = "form-control" })
+            @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
 
         </div>
 
@@ -48,13 +55,21 @@
 
         <div class="row mt-5">
 
-            <input type="submit" name="AgregarSucursal" value="Agregar Sucursal" class="btn btn-outline-primary" />
-
+            <input type="submit" name="AgregarSucursal" value="Editar Sucursal" class="btn btn-outline-warning" />
+            @Html.ActionLink("Regresar", "Index", "sucursal", null, new { @class = "btn btn-danger" })
         </div>
     </div>
 }
 
 
-
+<script>
+    var formSucursal = document.getElementById("formSucursal");
+    formSucursal.onsubmit = function (e) {
+        e.preventDefault();
+        if (confirm("quieres guardar los cambios") == 1) {
+            formSucursal.submit()
+        }
+    }
+</script>
 
 

@@ -5,8 +5,8 @@
 @{
     ViewBag.Title = "Editar";
 
-    List<SelectListItem> listaDeSexo = (List<SelectListItem>) ViewBag.lista;
-    
+    List<SelectListItem> listaDeSexo = (List<SelectListItem>)ViewBag.lista;
+
 
 }
 
@@ -14,12 +14,12 @@
 
 <div class="row">
     <div class="col-md-6">
-        @using (Html.BeginForm("Editar", "Cliente", FormMethod.Post))
+        @using (Html.BeginForm("Editar", "Cliente", FormMethod.Post, new {@ID="frmCliente"}))
         {
 
             <div>
                 @Html.LabelFor(p => p.Iidcliente)
-                @Html.TextBoxFor(p => p.Iidcliente, new { @class = "form-control", @readonly=true })
+                @Html.TextBoxFor(p => p.Iidcliente, new { @class = "form-control", @readonly = true })
                 @Html.ValidationMessage("Iidcliente", new { @class = "text-danger" })
             </div>
 
@@ -74,7 +74,10 @@
             </div>
 
             <div>
-                <input type="submit" name="Guardar" value="Agregar" class="btn btn-primary" />
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Guardar
+                </button>
+                @Html.ActionLink("Regresar", "Index", "Cliente", null, new {@class="btn btn-danger"})
             </div>
 
 
@@ -85,3 +88,31 @@
 
 </div>
 
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Desea guardar los cambios?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Aceptar()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>    
+
+    function Aceptar() {
+        var frmCliente = document.getElementById("frmCliente")
+        frmCliente.submit();
+    }
+
+</script>

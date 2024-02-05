@@ -24,7 +24,7 @@ namespace CursoMVC5.Models
 
 		[Display(Name = "Telefono")]
 		[Required]
-		[StringLength(1, ErrorMessage = "Longitud Maxima 1")]
+		[StringLength(10, ErrorMessage = "Longitud Maxima 10")]
 		public string Telefono { get; set; }
 
 		[Display(Name = "Email")]

@@ -90,7 +90,7 @@ namespace CursoMVC5.Controllers
 			return RedirectToAction("Index");
 		}
 
-
+        [HttpGet]
         public ActionResult Editar(int id)
         {
             Cliente_CLS cliente_CLS = new Cliente_CLS();
@@ -117,6 +117,35 @@ namespace CursoMVC5.Controllers
 
 
             return View(cliente_CLS);
+        }
+
+
+        [HttpPost]
+        public ActionResult Editar(Cliente_CLS oclienteCLS)
+        {
+            int id = oclienteCLS.Iidcliente;
+
+            if (!ModelState.IsValid)
+            {
+                return View(oclienteCLS);
+            }
+
+            using(var bd = new BDPasajeEntities())
+            {
+                Cliente oCliente = bd.Cliente.Where(p=>p.IIDCLIENTE.Equals(id)).First();
+				oCliente.NOMBRE = oclienteCLS.Nombre;
+				oCliente.APPATERNO = oclienteCLS.ApePaterno;
+				oCliente.APMATERNO = oclienteCLS.ApeMaterno;
+				oCliente.EMAIL = oclienteCLS.Email;
+				oCliente.DIRECCION = oclienteCLS.Direccion;
+				oCliente.IIDSEXO =(int)oclienteCLS.Iidsexo;
+				oCliente.TELEFONOCELULAR = oclienteCLS.TelefonoCelular;
+				oCliente.TELEFONOFIJO = oclienteCLS.TelefonoFijo;
+
+                bd.SaveChanges();
+			}
+
+            return RedirectToAction("Index");
         }
 
 		
