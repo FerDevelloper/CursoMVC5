@@ -1,7 +1,8 @@
-﻿@model CursoMVC5.Models.Bus_CLS
+﻿
+@model CursoMVC5.Models.Bus_CLS
 
 @{
-    ViewBag.Title = "Agregar";
+    ViewBag.Title = "Editar";
     List<SelectListItem> listaTipoBus = (List<SelectListItem>)ViewBag.listarTipoBus;
     List<SelectListItem> listaMarca = (List<SelectListItem>)ViewBag.listarMarca;
     List<SelectListItem> listaModelo = (List<SelectListItem>)ViewBag.listarModelo;
@@ -10,9 +11,9 @@
 
 }
 
-<h2>Agregar</h2>
+<h2>Editar</h2>
 
-@using (Html.BeginForm("Agregar", "Bus", FormMethod.Post, new {@id="frmBus"}))
+@using (Html.BeginForm("Agregar", "Bus", FormMethod.Post, new { @id = "frmBus" }))
 {
     @Html.AntiForgeryToken()
 
@@ -132,5 +133,3 @@
     }
 
 </script>
-
-

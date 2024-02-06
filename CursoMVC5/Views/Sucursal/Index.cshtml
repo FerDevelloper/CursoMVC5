@@ -28,7 +28,7 @@
                 <td>@item.Email</td>
                 <td>
                     @Html.ActionLink("Editar", "Editar", new { id = @item.Iidsucursal }, new { @class = "btn btn-warning" })
-                    @Html.ActionLink("Eliminar", "Sucursal", new { id = @item.Iidsucursal }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = @item.Iidsucursal }, new { @class = "btn btn-warning" ,@onclick="eliminarSucursal()"})
 
                 </td>
             </tr>
@@ -36,3 +36,13 @@
     </tbody>
 </table>
 
+<script>
+    function eliminarSucursal() {
+        if (confirm("Deceas eliminar") == 1) {
+            alert("Se elimino")
+        } else {
+            event.preventDefault();
+        }
+    }
+
+</script>

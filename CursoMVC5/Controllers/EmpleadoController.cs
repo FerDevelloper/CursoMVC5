@@ -135,6 +135,7 @@ namespace CursoMVC5.Controllers
 			return RedirectToAction("Index");
 		}
 
+        [HttpGet]
         public ActionResult Editar(int id)
         {
 			ListarCombos();
@@ -155,10 +156,38 @@ namespace CursoMVC5.Controllers
 				empleado_CLS.IidSexo = (int)oempleado.IIDSEXO;
 			}
 
-
-
             return View(empleado_CLS);
         }
+
+		[HttpPost]
+		public ActionResult Editar(Empleado_CLS oEmpleado)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(oEmpleado);
+			}
+
+			int id = oEmpleado.IidEmpleado;
+			using (var bd = new BDPasajeEntities())
+			{
+				Empleado oempleado = bd.Empleado.Where(p => p.IIDEMPLEADO.Equals(id)).First();
+
+				oempleado.IIDEMPLEADO = oEmpleado.IidEmpleado;
+				oempleado.NOMBRE = oEmpleado.Nombre;
+				oempleado.APPATERNO = oEmpleado.ApPaterno;
+				oempleado.APMATERNO = oEmpleado.ApMaterno;
+				oempleado.FECHACONTRATO = oEmpleado.FechaContrato;
+				oempleado.SUELDO = oEmpleado.Sueldo;
+				oempleado.IIDTIPOUSUARIO = oEmpleado.IidTipoUsuario;
+				oempleado.IIDTIPOCONTRATO = oEmpleado.IidTipoContrato;
+				oempleado.IIDSEXO = oEmpleado.IidSexo;
+
+				bd.SaveChanges();
+				
+			}
+
+			return RedirectToAction("Index");
+		}
 
 
 	}

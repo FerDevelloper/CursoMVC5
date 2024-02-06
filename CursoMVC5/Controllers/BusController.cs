@@ -161,6 +161,58 @@ namespace CursoMVC5.Controllers
 			}
 		}
 
+		[HttpGet]
+		public ActionResult Editar(int IidBus)
+		{
+			Bus_CLS bus_CLS = new Bus_CLS();
+						
+			using (var bd = new BDPasajeEntities())
+			{
+				Bus bus = bd.Bus.Where(p => p.IIDBUS.Equals(IidBus)).First();			
+
+				bus_CLS.IidSucursal = (int)bus.IIDSUCURSAL;
+				bus_CLS.placa = bus.PLACA;
+				bus_CLS.FechaCompra = (DateTime)bus.FECHACOMPRA;
+				bus_CLS.IidModelo = (int)bus.IIDMODELO;
+				bus_CLS.NumeroColumnas = (int)bus.NUMEROCOLUMNAS;
+				bus_CLS.NumeroFilas = (int)bus.NUMEROFILAS;
+				bus_CLS.Descripcion = bus.DESCRIPCION;
+				bus_CLS.Observacion = bus.OBSERVACION;
+				bus_CLS.IidMarca = (int)bus.IIDMARCA;
+				
+			}
+			Llenar_Combos();
+			return View(bus_CLS);
+		}
+
+		[HttpPost]
+		public ActionResult Editar(Bus_CLS obus)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(obus);
+			}
+
+			int id = obus.IidBus;
+			using(var bd = new BDPasajeEntities())
+			{
+				Bus bus = bd.Bus.Where(p => p.Equals(id)).First();
+
+				bus.IIDSUCURSAL = obus.IidSucursal;
+				bus.PLACA = obus.placa;
+				bus.FECHACOMPRA = obus.FechaCompra;
+				bus.IIDMODELO = obus.IidModelo;
+				bus.NUMEROCOLUMNAS = obus.NumeroColumnas;
+				bus.NUMEROFILAS = obus.NumeroFilas;
+				bus.DESCRIPCION = obus.Descripcion;
+				bus.OBSERVACION = obus.Observacion;
+				bus.IIDMARCA = obus.IidMarca;
+
+				bd.SaveChanges();
+			}
+			return RedirectToAction("Index");
+		}
+
 
 	}
 }

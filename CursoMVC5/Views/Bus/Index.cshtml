@@ -21,6 +21,7 @@
                         <td>@Html.LabelFor(p => p[0].NombreModelo)</td>
                         <td>@Html.LabelFor(p => p[0].NombreSucursal)</td>
                         <td>@Html.LabelFor(p => p[0].NombreTipoBus)</td>
+                        <td>Operaciones</td>
                     </tr>
                 </thead>
                 <tbody class="text-center table-striped-columns ">
@@ -32,6 +33,12 @@
                             <td>@item.NombreModelo</td>
                             <td>@item.NombreSucursal</td>
                             <td>@item.NombreTipoBus</td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", "Bus",new { item.IidBus }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Editar", "Eliminar", "Bus", @item.IidBus, new { @class = "btn btn-danger" })
+
+
+                            </td>
                         </tr>
                     }
 

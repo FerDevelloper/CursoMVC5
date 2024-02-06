@@ -31,7 +31,7 @@
                     @Html.ActionLink("🖋️", "Editar", "Marca", new { id = @item.iidMarca }, new { @class = "fa-solid fa-pen-to-square" })               
 
                     
-                    @Html.ActionLink("🚮", "Eliminar", "Marca", new { id = @item.iidMarca }, new { @class = "glyphicon glyphicon-trash" })
+                    @Html.ActionLink("🚮", "Eliminar", "Marca", new { id = @item.iidMarca }, new { @class = "glyphicon glyphicon-trash" ,@onclick="eliminar()"})
                 </td>
 
             </tr>
@@ -40,4 +40,17 @@
     </tbody>
 
 </table>
+
+<script>
+
+    function eliminar() {
+        if (confirm("Desea eliminar el reciobi correctamente") == 1) {
+            alert("Se elimino coreectamente")
+        } else {
+            event.preventDefault();
+
+        }
+    }
+
+</script>
 

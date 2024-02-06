@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using CursoMVC5.Models;
@@ -16,8 +17,10 @@ namespace CursoMVC5.Controllers
 
 			using (var bd = new BDPasajeEntities())
             {
-                listaMarca =( from marca in bd.Marca
+                listaMarca =( from marca in bd.Marca 
+                              where marca.BHABILITADO == 1
                                              select new Marca_CLS
+
                                              {
                                                  iidMarca=marca.IIDMARCA,
                                                  nombre=marca.NOMBRE,
@@ -35,12 +38,20 @@ namespace CursoMVC5.Controllers
 			
 			return View();
 		}
-        [HttpPost]
 
+        [HttpPost]
 		public ActionResult Agregar(Marca_CLS marca)
 		{
-			if (!ModelState.IsValid)
+            int num_registros = 0;
+            string nom_marca = marca.nombre;
+            using(var bd = new BDPasajeEntities())
+            {
+                num_registros= bd.Marca.Where(p=>p.NOMBRE.Equals(nom_marca)).Count();
+            }
+
+			if (!ModelState.IsValid || num_registros != 0 )
 			{
+                if (num_registros != 0) marca.mensaje_error = $"El nombre {marca.nombre} ya existe";
 				return View(marca);
             }
             else
@@ -78,8 +89,18 @@ namespace CursoMVC5.Controllers
         [HttpPost]
         public ActionResult Editar(Marca_CLS oMarca_CLS)
         {
-            if(!ModelState.IsValid)
+			int num_registros = 0;
+			string nom_marca = oMarca_CLS.nombre;
+            int id = oMarca_CLS.iidMarca;
+			using (var bd = new BDPasajeEntities())
+			{
+				num_registros = bd.Marca.Where(p => p.NOMBRE.Equals(nom_marca) && !p.IIDMARCA.Equals(id)).Count();
+			}
+
+
+            if (!ModelState.IsValid || num_registros >= 1) oMarca_CLS.mensaje_error = "ya se emcuentra registrada la marca";
             {
+                if(num_registros >=1)
                 return View(oMarca_CLS);
             }
 
@@ -91,6 +112,20 @@ namespace CursoMVC5.Controllers
 				oMarca.DESCRIPCION = oMarca_CLS.descripcion;
                 bd.SaveChanges();
 			}
+
+            return RedirectToAction("Index");
+
+        }
+
+        
+        public ActionResult Eliminar(int id)
+        {
+            using(var bd = new BDPasajeEntities())
+            {
+                Marca oMarca = bd.Marca.Where(p => p.IIDMARCA.Equals(id)).First();
+                oMarca.BHABILITADO = 0;
+                bd.SaveChanges();
+            }
 
             return RedirectToAction("Index");
 

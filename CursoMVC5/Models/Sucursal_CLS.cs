@@ -40,5 +40,10 @@ namespace CursoMVC5.Models
 		public DateTime FechaApertura { get; set; }
 
         public int Bhabilitado { get; set; }
+
+
+		//
+		public string Msg_error { get; set; }
+
     }
 }

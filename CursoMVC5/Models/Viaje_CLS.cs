@@ -22,6 +22,7 @@ namespace CursoMVC5.Models
 
 		[Display(Name = "Precio")]
 		[Required]
+		[Range(0,1000,ErrorMessage ="El rango solo es de 1000") ]
 		public double precio { get; set; }
 
 		[Display(Name = "Fecha de viaje")]

@@ -20,5 +20,9 @@ namespace CursoMVC5.Models
 		public string descripcion { get; set; }
 		public int bhabilitado { get; set; }
 
+		//añado Propiedad (Errores de validacion)
+
+		public string mensaje_error {  get; set; }
+
     }
 }

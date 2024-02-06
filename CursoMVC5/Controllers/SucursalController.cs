@@ -40,8 +40,16 @@ namespace CursoMVC5.Controllers
 
         public ActionResult Agregar(Sucursal_CLS oSucursalCLS)
         {
-            if (ModelState.IsValid)
+            int num_registros = 0;
+            string nom = oSucursalCLS.Nombre;
+            using(var bd = new BDPasajeEntities())
             {
+                num_registros = bd.Sucursal.Where(p=>p.NOMBRE.Equals(nom)).Count();
+            }
+
+            if (ModelState.IsValid || num_registros !=0)
+            {
+                oSucursalCLS.Msg_error = "la sucursal que deceas agregar ya existe ";
                 return View(oSucursalCLS);
             }
 
@@ -109,6 +117,20 @@ namespace CursoMVC5.Controllers
 			}
 
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Eliminar(int id)
+        {
+            using(var bd  = new BDPasajeEntities())
+            {
+                Sucursal osucursal = bd.Sucursal.Where(p=>p.Equals(id)).First();
+                osucursal.BHABILITADO = 0;
+                bd.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+
         }
 
 

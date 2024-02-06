@@ -6,7 +6,9 @@
 
 <h2>Viaje Index</h2>
 
-<div class="container">
+@Html.ActionLink("Agregar", "Agregar", "viaje", null, new { @class = "btn btn-primary" })
+
+<div class="container mt-3">
     <div class="row">
         <div class="col">
             <table class="table table-borderless table-hover table-striped">
@@ -16,6 +18,7 @@
                         <td>@Html.LabelFor(p => p[0].nombreLugarOrigen)</td>
                         <td>@Html.LabelFor(p => p[0].nombreLugarDestino)</td>
                         <td>@Html.LabelFor(p => p[0].nombreBus)</td>
+                        <td>Operaciones</td>
                     </tr>
                 </thead>
                 <tbody class="table-striped">
@@ -26,10 +29,15 @@
                             <td>@item.nombreLugarOrigen</td>
                             <td>@item.nombreLugarDestino</td>
                             <td>@item.nombreBus</td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", "viaje", new { id = item.iidviaje }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Borrar", "Borrar", "viaje", new { id = item.iidviaje }, new { @class = "btn btn-danger" })
+
+                            </td>
                         </tr>
 
                     }
-                    
+
                 </tbody>
             </table>
         </div>
