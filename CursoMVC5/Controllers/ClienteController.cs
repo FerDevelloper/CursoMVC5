@@ -148,6 +148,25 @@ namespace CursoMVC5.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Eliminar(int iidcliente)
+        {
+            using (var bd = new BDPasajeEntities())
+            {
+                Cliente oCliente = bd.Cliente.Where(p => p.IIDCLIENTE.Equals(iidcliente)).First();
+                oCliente.BHABILITADO = 0;
+
+                bd.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+            return View();
+
+	    }
+
+                
+        
+
 		
 	}
 }

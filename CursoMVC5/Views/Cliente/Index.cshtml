@@ -57,8 +57,12 @@
                         <td>
 
                             @Html.ActionLink("🖋️", "Editar", "Cliente", new { id = @cliente.Iidcliente }, new { @class = "btn btn-warning" })
-                            @Html.ActionLink("🚮", "Eliminar", "Cliente", new { id = @cliente.Iidcliente }, new { @class = "btn btn-danger" })
-
+                            @*@Html.ActionLink("🚮", "Eliminar", "Cliente", new { id = @cliente.Iidcliente }, new { @class = "btn btn-danger" })*@
+                            
+                            <button type="button" onclick="mostrarPop(@cliente.Iidcliente)" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                🚮
+                            </button>
+                                
                             
                         </td>
 
@@ -76,6 +80,42 @@
     </div>
 
 </div>
+
+@using (Html.BeginForm("Eliminar", "Cliente", FormMethod.Post, new { @id = "frmEliminar" }))
+{
+    @Html.Hidden("iidcliente",Model)
+
+
+}
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Desea Eliminar este cliente?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="eliminar()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function mostrarPop(iidcliente) {
+        document.getElementById("iidcliente").value = iidcliente;
+    }
+
+    function eliminar() {
+        var frmEliminar = document.getElementById("frmEliminar");
+        frmEliminar.submit();
+    }
+
+</script>
 
 
 

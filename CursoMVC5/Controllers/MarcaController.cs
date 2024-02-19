@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -73,7 +74,8 @@ namespace CursoMVC5.Controllers
 
 
         public ActionResult Editar(int id)
-        {
+        {           
+
             Marca_CLS oMarca_CLS = new Marca_CLS();
             using(var bd = new BDPasajeEntities())
             {
