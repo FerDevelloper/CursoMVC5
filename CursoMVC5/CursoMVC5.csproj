@@ -142,6 +142,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListaController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\ViajeController.cs" />
@@ -181,6 +182,8 @@
       <DependentUpon>BDPasajes.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Empleado_CLS.cs" />
+    <Compile Include="Models\Lista2_CLS.cs" />
+    <Compile Include="Models\Lista_CLS.cs" />
     <Compile Include="Models\Lugar.cs">
       <DependentUpon>BDPasajes.tt</DependentUpon>
     </Compile>
@@ -290,6 +293,7 @@
     <Content Include="Views\Bus\Agregar.cshtml" />
     <Content Include="Views\Bus\Editar.cshtml" />
     <Content Include="Views\Viaje\Agregar.cshtml" />
+    <Content Include="Views\Lista\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

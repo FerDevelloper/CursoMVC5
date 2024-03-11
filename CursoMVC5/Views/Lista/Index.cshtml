@@ -1,0 +1,17 @@
+﻿
+@using CursoMVC5.Models
+@model Lista2_CLS
+
+@using (Html.BeginForm("Fer", "Lista", FormMethod.Post, new { @id = "frmEliminar" }))
+{
+    for (int i = 0; i < Model.lista.Count; i++)
+    {
+        <label>@Model.lista[i].nom</label>
+        @Html.HiddenFor(model => model.lista[i].nom)
+        @Html.CheckBoxFor(model => model.lista[i].act)
+        <br />
+    }
+
+    <input type="submit" class="btn btn-success" value="Submit" />
+}
+
